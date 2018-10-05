@@ -1,0 +1,31 @@
+
+<div class="container-fluid">
+	<h1><%= @user.username %>'s Profile</h1>
+
+	<p><%= @user.name %></p>
+	<p><%= @user.location %></p>
+	<p><%= @user.bio %></p>
+
+	<p>
+		<% if current_user.following.include?(@user.id) %>
+			<%=link_to "Unfollow", unfollow_path(id: @user.id), class: "btn btn-dark" %>
+		<% elsif current_user.id != @user.id %>
+			<%=link_to "Follow", now_following_path(id: @user.id), class: "btn btn-primary" %>
+		<% end %>
+
+	</p>
+
+	<div class="container-fluid">
+		<% @user.tweets.each do |tweet| %>
+			<div class="card">
+				<div class="card-body">
+					<div class="card-title"></div>
+					<div class="card-text"><%= tweet.message %></div>	
+					<div class="card-footer text-muted">Tweeted on <%= tweet.created_at %></div>
+					
+				</div>
+			</div>
+		<% end %>
+	</div>
+
+</div>

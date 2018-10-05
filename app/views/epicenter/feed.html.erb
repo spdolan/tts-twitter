@@ -1,0 +1,32 @@
+<% if user_signed_in? %>
+	<div class="jumbotron"><%= current_user.username %>'s Twitter Feed </div>
+
+
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col">
+			</div>
+			<div class="col-8">
+				
+
+				<% @following_tweets.each do |tweet| %>
+					<div class="card">
+						<div class="card-body">
+							<div class="card-title"><%= link_to tweet.user.username, show_user_path(id:tweet.user_id) %></div>
+							<div class="card-text"><br><%= tweet.message %> <br><br></div>	
+							<div class="card-footer text-muted text-right">Tweeted on <%= tweet.created_at.strftime("%m/%d/%Y %H:%M:%S") %></div>
+							
+						</div>
+					</div>
+
+					<br><br>
+				<% end %>
+				
+			</div>
+			<div class="col">
+			</div>
+		</div>
+	</div>
+
+<% end %>
