@@ -1,6 +1,7 @@
 class EpicenterController < ApplicationController
   def feed
   	@following_tweets = []
+    @user = User.all
 
   	if current_user == nil
   		return
@@ -11,6 +12,8 @@ class EpicenterController < ApplicationController
   	 		@following_tweets.push(tweet)
   	 	end
   	 end
+
+     @following_tweets.reverse!
 
   end
 
@@ -30,5 +33,11 @@ class EpicenterController < ApplicationController
   	current_user.save
 
   	redirect_to show_user_path(id: params[:id])
+  end
+
+  def tag_tweets
+    @tag = Tag.find(params[:id])
+    
+
   end
 end

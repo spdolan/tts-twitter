@@ -1,11 +1,27 @@
 <% if user_signed_in? %>
-	<div class="jumbotron"><%= current_user.username %>'s Twitter Feed </div>
+	<div class="jumbotron"><%= current_user.username %>'s Twitter Feed <strong><%= current_user.avatar.url %></strong></div>
 
 
 
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col">
+			<div class="col-2 border">
+
+				<div class="col-12 border"><h4>Active Users!</h4></div>
+				<br>
+
+				<% @user.each do |user| %>
+					<div class="card border-primary">
+						<div class="card-body">
+							
+							<div class="card-text text_white"><%= link_to user.username, show_user_path(id:user.id) %></div>	
+														
+						</div>
+					</div>
+
+					<br><br>
+				<% end %>
+
 			</div>
 			<div class="col-8">
 				
@@ -13,8 +29,16 @@
 				<% @following_tweets.each do |tweet| %>
 					<div class="card">
 						<div class="card-body">
-							<div class="card-title"><%= link_to tweet.user.username, show_user_path(id:tweet.user_id) %></div>
-							<div class="card-text"><br><%= tweet.message %> <br><br></div>	
+							<div class="card-title">
+								<% if current_user.avatar.url != nil %>
+					                <%= image_tag current_user.avatar.url, size: 40, class: 'rounded-circle' %>
+					            <% else %>
+					                <%= image_tag 'blank_profile.jpg', size: 40, class: 'rounded-circle' %>
+					            <% end %>
+								<%= link_to tweet.user.username, show_user_path(id:tweet.user_id) %>
+								
+							</div>
+							<div class="card-text"><%= tweet.message.html_safe %> <br><br></div>	
 							<div class="card-footer text-muted text-right">Tweeted on <%= tweet.created_at.strftime("%m/%d/%Y %H:%M:%S") %></div>
 							
 						</div>
@@ -24,7 +48,7 @@
 				<% end %>
 				
 			</div>
-			<div class="col">
+			<div class="col-2 border">
 			</div>
 		</div>
 	</div>
