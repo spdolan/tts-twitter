@@ -32,7 +32,7 @@ gem 'carrierwave'
 gem 'paperclip'
 gem 'bootstrap'
 gem 'jquery-rails'
-gem 'font-awesome-rails'
+gem 'font-awesome-sass', '~> 5.3.1'
 
 
 # Use ActiveStorage variant

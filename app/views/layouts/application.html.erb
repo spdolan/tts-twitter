@@ -10,18 +10,23 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-light bg-light">
-      
-      
-        <%= link_to 'TTS Twitter', root_path, class: 'navbar-brand mb-0 h1' %>
-        
-          
-          <div class="nav-item"><a><%= link_to 'Create Tweet', new_tweet_path%></a></div>
-           <div class="nav-item"><a><%= link_to 'Explore', "#" %></a></div>
-        
+    <nav class="navbar navbar-light navbar-expand-xl bg-light">
+    
+      <ul class="navbar-nav border">
+          <li class="nav-item active">
+          <a class="nav-link" href="#"><i class="fas fa-home"></i> Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"><i class="fas fa-bolt"></i> Moments </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"><i class="fas fa-comments"></i> Feed </a>
+        </li>
+
+        </ul>
 
         <% if user_signed_in? %>
-          <div class="nav-item dropdown">
+          <div class="float-right nav-item dropdown ">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <% if current_user.avatar.url != nil %>
                 <%= image_tag current_user.avatar.url, size: 40, class: 'rounded-circle' %>

@@ -5,7 +5,7 @@
 
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-2 border">
+			<div class="col-2 feed-side">
 
 				<div class="col-12 border"><h4>Active Users!</h4></div>
 				<br>
@@ -39,7 +39,13 @@
 								
 							</div>
 							<div class="card-text"><%= tweet.message.html_safe %> <br><br></div>	
-							<div class="card-footer text-muted text-right">Tweeted on <%= tweet.created_at.strftime("%m/%d/%Y %H:%M:%S") %></div>
+							<div class="card-footer text-muted text-right">
+								<% if (Time.zone.now - tweet.created_at).to_i / 1.day < 1 %>
+									Tweeted <%= time_ago_in_words(tweet.created_at)%> ago.
+								<% else %>
+									Tweeted on <%= tweet.created_at.strftime("%m/%d/%Y %H:%M:%S") %>
+								<% end %>
+							</div>
 							
 						</div>
 					</div>
