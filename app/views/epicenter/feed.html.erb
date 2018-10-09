@@ -43,7 +43,7 @@
 								<% if (Time.zone.now - tweet.created_at).to_i / 1.day < 1 %>
 									Tweeted <%= time_ago_in_words(tweet.created_at)%> ago.
 								<% else %>
-									Tweeted on <%= tweet.created_at.strftime("%m/%d/%Y %H:%M:%S") %>
+									Tweeted on <%= tweet.created_at.strftime("%b%e %H:%M:%S") %>
 								<% end %>
 							</div>
 							

@@ -8,9 +8,9 @@
 
 	<p>
 		<% if current_user.following.include?(@user.id) %>
-			<%=link_to "Unfollow", unfollow_path(id: @user.id), class: "btn btn-dark" %>
+			<%=link_to "Unfollow", unfollow_path(id: @user.id), class: "btn btn-dark unfollow_button" %>
 		<% elsif current_user.id != @user.id %>
-			<%=link_to "Follow", now_following_path(id: @user.id), class: "btn btn-primary" %>
+			<%=link_to "Follow", now_following_path(id: @user.id), class: "btn btn-primary", id: "follow_button" %>
 		<% end %>
 
 	</p>
@@ -20,11 +20,12 @@
 			<div class="card">
 				<div class="card-body">
 					<div class="card-title"></div>
-					<div class="card-text"><%= tweet.message %></div>	
+					<div class="card-text"><%= tweet.message.html_safe %></div>	
 					<div class="card-footer text-muted">Tweeted on <%= tweet.created_at %></div>
 					
 				</div>
 			</div>
+			<br>
 		<% end %>
 	</div>
 

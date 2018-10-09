@@ -1,0 +1,26 @@
+<% @users.each do |user| %>
+	<div class="card border-primary">
+		<div class="card-body">
+			
+			<div class="card-text text_white">
+				<%= link_to show_user_path(id:user.id) do %>
+					<%= user.name %>
+					<%= user.username %>
+				<% end %> 
+
+				<% if user_signed_in? %>
+					<% if current_user.following.include? user.id %>
+						<%=link_to "Unfollow", unfollow_path(id: user.id), class: "btn btn-dark unfollow_button"%>
+					<% elsif current_user.id != user.id %>
+						<%=link_to "Follow", now_following_path(id: user.id), class: "btn btn-primary", id: "follow_button" %>
+					<% end %> 
+
+				<% end %> 
+			</div>
+
+										
+		</div>
+	</div>
+
+	<br><br>
+<% end %>

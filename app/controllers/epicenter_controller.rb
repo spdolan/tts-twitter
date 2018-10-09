@@ -35,9 +35,37 @@ class EpicenterController < ApplicationController
   	redirect_to show_user_path(id: params[:id])
   end
 
+  def following
+    @interested_user = User.find(params[:id])
+    @users = []
+
+    User.all.each do |user|
+      if @interested_user.following.include?(user.id)
+        @users.push(user)
+      end
+    end
+
+  end
+
+  def followers
+    @interested_user = User.find(params[:id])
+    @users = []
+
+    User.all.each do |user|
+      if user.following.include?(@interested_user.id)
+        @users.push(user)
+      end
+    end
+
+  end
+
   def tag_tweets
     @tag = Tag.find(params[:id])
     
+  end
+
+  def all_users
+    @users = User.all
 
   end
 end

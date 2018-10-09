@@ -17,3 +17,15 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require_tree .
+
+$(document).on('turbolinks:load', function(){
+	$('.unfollow_button').hover(function(){
+		$(this).removeClass('btn-dark');
+		$(this).addClass('btn-danger');
+		$(this).html("Unfollow");
+	}, function(){
+		$(this).removeClass('btn-danger');
+		$(this).addClass('btn-dark');
+		$(this).html("Following");
+	});
+});
