@@ -2,9 +2,9 @@
 <div class="container-fluid">
 	<h1><%= @user.username %>'s Profile</h1>
 
-	<p><%= @user.name %></p>
-	<p><%= @user.location %></p>
-	<p><%= @user.bio %></p>
+	<p><i class="fas fa-user-astronaut"></i> <%= @user.name %></p>
+	<p><i class="far fa-compass"></i> <%= @user.location %></p>
+	<p><i class="fas fa-info-circle"></i> <%= @user.bio %></p>
 
 	<p>
 		<% if current_user.following.include?(@user.id) %>
@@ -16,12 +16,19 @@
 	</p>
 
 	<div class="container-fluid">
-		<% @user.tweets.each do |tweet| %>
+		<% @user.tweets.reverse.each do |tweet| %>
 			<div class="card">
 				<div class="card-body">
 					<div class="card-title"></div>
-					<div class="card-text"><%= tweet.message.html_safe %></div>	
-					<div class="card-footer text-muted">Tweeted on <%= tweet.created_at %></div>
+					<div class="card-text"><%= tweet.message.html_safe %></div>
+					<br>
+					<div class="card-footer text-muted text-right">
+						<% if (Time.zone.now - tweet.created_at).to_i / 1.day < 1 %>
+							Tweeted <%= time_ago_in_words(tweet.created_at)%> ago.
+						<% else %>
+							Tweeted on <%= tweet.created_at.strftime("%b #{tweet.created_at.strftime("%e").to_i.ordinalize} %H:%M:%S") %>
+						<% end %>
+					</div>
 					
 				</div>
 			</div>
