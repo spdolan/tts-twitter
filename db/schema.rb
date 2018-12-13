@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2018_10_08_142259) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "tags", force: :cascade do |t|
     t.string "phrase"
     t.datetime "created_at", null: false

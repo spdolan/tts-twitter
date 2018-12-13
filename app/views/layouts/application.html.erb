@@ -11,56 +11,56 @@
 
   <body>
     <nav class="navbar fixed-top navbar-light navbar-expand-xl bg-light">
-    
-      <ul class="navbar-nav border">
-          <li class="nav-item active">
-          <a class="nav-link" href=<%= root_path %>><i class="fas fa-home"></i> Home <span class="sr-only">(current)</span></a>
-        </li>
+      
+        <ul class="navbar-nav w-100">
+            <li class="nav-item active">
+            <a class="nav-link" href=<%= root_path %>><i class="fas fa-home"></i> Home <span class="sr-only">(current)</span></a>
+          </li>
 
-        <li class="nav-item">
-          <a class="nav-link" href=<%= new_tweet_path %>><i class="fab fa-twitter"></i> Create Tweet </a>
-        </li>
+          <li class="nav-item">
+            <a class="nav-link" href=<%= new_tweet_path %>><i class="fab fa-twitter"></i> Create Tweet </a>
+          </li>
 
-        <li class="nav-item">
-          <a class="nav-link" href=<%= all_users_path %>><i class="fas fa-bolt"></i> All Users </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href=<%= following_path(id: current_user.id) %>><i class="fas fa-comments"></i> Following </a>
-        </li>
+          <li class="nav-item">
+            <a class="nav-link" href=<%= all_users_path %>><i class="fas fa-bolt"></i> All Users </a>
+          </li>
 
-        <li class="nav-item">
-          <a class="nav-link" href=<%= followers_path(id: current_user.id) %>><i class="fas fa-users"></i> Followers </a>
-        </li>
-
-
-
-
-      </ul>
-
-      <ul class="nav navbar-nav navbar-right">
-        <li class="nav-item">
           <% if user_signed_in? %>
-            <div class="nav-item dropdown pull-right">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <% if current_user.avatar.url != nil %>
-                  <%= image_tag current_user.avatar.url, size: 40, class: 'rounded-circle' %>
-                <% else %>
-                  <%= image_tag 'blank_profile.jpg', size: 40, class: 'rounded-circle' %>
-                <% end %>
-              </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href=<%= edit_user_registration_path %>>Edit Profile</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href=<%= destroy_user_session_path %> data-method="delete">Sign Out</a>
-                </div>
-            </div>
+            <li class="nav-item">
+              <a class="nav-link" href=<%= following_path(id: current_user.id) %>><i class="fas fa-comments"></i> Following </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href=<%= followers_path(id: current_user.id) %>><i class="fas fa-users"></i> Followers </a>
+            </li>
+
+            <li class="nav-item dropdown ml-auto">
+                <a class="nav-link dropdown-toggle justify-content-end" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <% if current_user.avatar.url != nil  %>
+                    <%= image_tag current_user.avatar.url, size: 40, class: 'rounded-circle' %>
+                  <% else %>
+                    <%= image_tag 'blank_profile.jpg', size: 40, class: 'rounded-circle' %>
+                  <% end %>
+                </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href=<%= edit_user_registration_path %>>Edit Profile</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href=<%= destroy_user_session_path %> data-method="delete">Sign Out</a>
+                  </div>
+              
+              </li>
+
+          <% else %>
+                <li class="nav-item dropdown ml-auto">
+                  <a class="btn btn-success text-light" href=<%= new_user_session_path %>> Sign In </a>
+                  <a class="btn btn-light" href=<%= new_user_registration_path %>>Sign Up</a>
+                </li>
+
           <% end %>
 
-          
-        </li>
-      </ul>
-          
-        
+
+        </ul>
+     
 
       </nav>
 
